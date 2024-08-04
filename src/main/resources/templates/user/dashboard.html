@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en" th:replace="~{base :: parent(~{::#content}, ~{::title})}">
+<html>
+<head>
+    <title>Dashboard</title>
+</head>
+<body>
+<div id="content">
+    <div th:if="${loggedInUser}">
+        <div th:replace="~{user/sidebar :: sidebar}"></div>
+    </div>
+    <div style="padding-top: 120px" class="sm:pl-64">
+        <div class="grid grid-cols-12">
+            <div class="col-span-4 md:col-span-2 lg:col-span-3"></div>
+            <div class="col-span-4 md:col-span-8 lg:col-span-6">
+                <div href="#" class="text-center block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+                    <div style="padding-top: 25px; padding-bottom: 25px">
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                            Number of contacts added
+                        </h5>
+                        <p class="font-normal text-gray-700 dark:text-gray-400">
+                            <span th:text="${totalContactNumber}"> contacts have been added by the <span th:text="${loggedInUser.name}"></span></span>
+                        </p>
+                    </div>
+                    <hr>
+                    <div style="padding-top: 25px; padding-bottom: 25px">
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                            Noteworthy technology acquisitions 2021
+                        </h5>
+                        <p class="font-normal text-gray-700 dark:text-gray-400">
+                            Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.
+                        </p>
+                    </div>
+                    <hr>
+                    <div style="padding-top: 25px; padding-bottom: 25px">
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                            Noteworthy technology acquisitions 2021
+                        </h5>
+                        <p class="font-normal text-gray-700 dark:text-gray-400">
+                            Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-span-4 md:col-span-2 lg:col-span-3"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

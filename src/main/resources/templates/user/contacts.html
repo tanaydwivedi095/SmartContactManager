@@ -1,0 +1,84 @@
+    <!doctype html>
+    <html lang="en" th:replace="~{base :: parent(~{::#content}, ~{::title})}">
+    <html>
+    <head>
+        <title>Contacts</title>
+    </head>
+    <body>
+        <div id="content">
+            <div th:if="${loggedInUser}">
+                <div th:replace="~{user/sidebar :: sidebar}"></div>
+            </div>
+            <div style="padding-top: 120px" class="sm:pl-64">
+                <div class="contact-container px-12">
+                    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                Name
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Phone
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Email
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Address
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Links
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Description
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Action
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:object="${contact}" th:each="contact : ${contactList}" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <td class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                                <img th:src="*{picture}" class="w-10 h-10 rounded-full" alt="Profile Picture">
+                                <div class="ps-3">
+                                    <div th:text="*{name}"class="text-base font-semibold"></div>
+                                    <div th:text="*{email}" class="font-normal text-gray-500"></div>
+                                </div>
+                            </td>
+                            <td th:text="*{phoneNumber}" class="px-6 py-4"></td>
+                            <td th:text="*{email}" class="px-6 py-4"></td>
+                            <td th:text="*{address}" class="px-6 py-4"></td>
+                            <td class="">
+                                <ul>
+                                    <li>
+                                        <a th:href="@{*{linkedInLink}}">
+                                            <span th:text="*{linkedInLink}"></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a th:href="@{*{websiteLink}}">
+                                            <span th:text="*{websiteLink}"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </td>
+                            <td th:text="*{description}" class="px-6 py-4"></td>
+                            <td class="px-6 py-4">
+                                <button type="button"
+                                        class="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
+                                    <a th:href="@{'/user/contact/delete/'+*{id}}">Delete</a>
+                                </button>
+                                <button type="button"
+                                        class="text-yellow-400 hover:text-white border border-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-yellow-300 dark:text-yellow-300 dark:hover:text-white dark:hover:bg-yellow-400 dark:focus:ring-yellow-900">
+                                    <a th:href="@{'/user/contact/view/'+*{id}}">Update</a>
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>

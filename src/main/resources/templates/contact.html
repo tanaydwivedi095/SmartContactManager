@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en" th:replace="~{base :: parent(~{::#content}, ~{::title})}">
+<head>
+    <title>Contact</title>
+</head>
+<body>
+<div id="content" style="padding-top: 120px">
+    <div class="min-h-screen bg-gray-100 flex flex-col items-center p-6">
+        <div class="w-full max-w-4xl bg-white rounded-lg shadow-lg p-6">
+            <h1 class="text-3xl font-bold text-center mb-6">Contact Us</h1>
+            <p class="text-lg text-center mb-6">We’re here to help! Whether you have a question, need support, or want to provide feedback, please don’t hesitate to reach out to us. Our team is dedicated to providing you with the assistance you need.</p>
+
+            <h2 class="text-2xl font-semibold mb-4">Get in Touch</h2>
+            <p class="text-lg mb-6">You can contact us through the following method:</p>
+
+            <form th:action="@{/send-mail}" th:object="${helpForm}" method="POST" class="space-y-4">
+                <div>
+                    <label for="name" class="block text-lg font-medium">Name</label>
+                    <input th:field="*{name}" type="text" id="name" name="name" class="w-full p-2 border border-gray-300 rounded" required>
+                </div>
+                <div>
+                    <label for="about" class="block text-lg font-medium">About</label>
+                    <input th:field="*{about}" type="text" id="about" name="email" class="w-full p-2 border border-gray-300 rounded" required>
+                </div>
+                <div>
+                    <label for="message" class="block text-lg font-medium">Message</label>
+                    <textarea th:field="*{message}" id="message" name="message" rows="4" class="w-full p-2 border border-gray-300 rounded" required></textarea>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="text-white bg-blue-500 hover:bg-blue-600 font-semibold py-2 px-4 rounded">Send Message</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

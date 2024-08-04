@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en" th:replace="~{base :: parent(~{::#content}, ~{::title})}">
+<html>
+<head>
+  <title>Contact</title>
+</head>
+<body>
+<div id="content">
+  <div th:if="${loggedInUser}">
+    <div th:replace="~{user/sidebar :: sidebar}"></div>
+  </div>
+  <div style="padding-top: 120px" class="sm:pl-64">
+    <div class="grid grid-cols-12">
+      <div class="col-span-4 md:col-span-2 lg:col-span-3"></div>
+      <div class="col-span-12 md:col-span-8 lg:col-span-6">
+        <div class="block p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Add Contact</h5>
+          <p class="font-normal text-gray-700 dark:text-gray-400">
+            Fill in the details to add user on cloud
+            <div th:replace="~{message :: messageBox}"></div>
+            <form th:action="@{'/user/contact/add'}"
+                  th:object="${contactForm}"
+                  class="mt-5"
+                  method="post"
+                  enctype="multipart/form-data"
+            >
+              <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
+              <div class="relative mb-2">
+                <input th:field="*{name}" type="text" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter Here">
+                <p class="text-red-600 pl-2" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+              </div>
+              <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+              <div class="relative mb-2">
+                <input th:field="*{email}" type="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter Here">
+                <p class="text-red-600 pl-2" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+              </div>
+              <label for="contact" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contact</label>
+              <div class="relative mb-2">
+                <input th:field="*{phoneNumber}" type="text" id="contact" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter Here">
+                <p class="text-red-600 pl-2" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}">Invalid Name</p>
+              </div>
+              <label for="about" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">About</label>
+              <div class="relative mb-2">
+                <textarea th:field="*{description}" id="about" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                </textarea>
+              </div>
+              <div class="flex gap-2">
+                <div class="w-full">
+                  <label for="linkedin" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">LinkedIn</label>
+                  <div class="relative mb-6">
+                    <input th:field="*{linkedInLink}" type="text" id="linkedin" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter Here">
+                  </div>
+                </div>
+                <div class="w-full">
+                  <label for="facebook" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Facebook</label>
+                  <div class="relative mb-6">
+                    <input th:field="*{websiteLink}" type="text" id="facebook" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter Here">
+                  </div>
+                </div>
+              </div>
+              <label for="address" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Address</label>
+              <div class="relative mb-6">
+                <textarea th:field="*{address}" id="address" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                </textarea>
+              </div>
+              <div class="relative mb-6">
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="contactImage">Upload file</label>
+                <input th:field="*{contactImage}" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="contactImage" type="file">
+                <p class="text-red-600 pl-2" th:if="${#fields.hasErrors('contactImage')}" th:errors="*{contactImage}"></p>
+              </div>
+              <div class="flex items-center mb-6">
+                <input th:field="*{favorite}" id="favorite" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                <label for="favorite" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Mark as favorite</label>
+              </div>
+              <div class="button-container text-center">
+                <button type="submit" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                  Submit
+                </button>
+                <button type="reset" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+                  Reset
+                </button>
+              </div>
+            </form>
+          </p>
+        </div>
+      </div>
+
+      <div class="col-span-4 md:col-span-2 lg:col-span-3"></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

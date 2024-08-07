@@ -25,6 +25,9 @@ Smart Contact Manager is a web application built using Spring Boot and Java. It 
 - **`PageController`**: Manages page routing for home, about, service, login, signup, and contact pages.
 - **`RootController`**: Adds the logged-in user to the model for access across the application.
 - **`UserController`**: Manages user-specific pages, like the user profile.
+- **`ApiController`**: Manages user-specific contact, like fetching a contact based on contactId.
+- **`AuthController`**: Manages user authorization with the help of email token sent to user's email.
+- **`ContactController`**: Manages contacts for the logged in user, like adding, updating, viewing and deleting a contact.
 
 ### Repositories
 
@@ -95,7 +98,7 @@ Smart Contact Manager is a web application built using Spring Boot and Java. It 
 
 5. **Access the Application**: 
 
-   Open your web browser and navigate to `http://localhost:8080`.
+   Open your web browser and navigate to `http://localhost:8081`.
 
 ## Usage
 
